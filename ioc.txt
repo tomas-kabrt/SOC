@@ -1,0 +1,5 @@
+seznam.cz
+192.168.2.2
+www.whatever.com
+7677ff29ec9ce95296e0219d5b2797ac45cbb6f5dedee967951bbafe1b09ecbf
+aaa
