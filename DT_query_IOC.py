@@ -5,6 +5,11 @@ import IOC_file_extraction
 verbose = True
 
 
+def generate_DT_query(ioc, source):
+
+    return True
+
+
 def main():
     if verbose:
         log.basicConfig(format="%(levelname)s: %(message)s", level=log.DEBUG)
@@ -12,12 +17,11 @@ def main():
     else:
         log.basicConfig(format="%(levelname)s: %(message)s")
 
-    ioc, unknown = IOC_file_extraction.main()
+    ioc = IOC_file_extraction.main()
 
-    print(ioc)
-    print(unknown)
-    return ioc
+    log.info(ioc)
 
+    generate_DT_query(ioc, "IP")
 
 if __name__ == "__main__":
     main()
