@@ -5,8 +5,17 @@ import IOC_file_extraction
 verbose = True
 
 
-def generate_DT_query(ioc, source):
+def generate_DT_query(iocs, source):
+    query = ''
 
+    DT_query_mapping = {'ip': 'dest_ip:', 'md5': 'md5:', 'sha256': 'sha256:', 'domain': 'host:'}
+    for ioc in iocs[source]:
+        if query == '':
+            query = '@fields.%s%s' % (DT_query_mapping[source], ioc)
+        else:
+            query += ' OR @fields.%s%s' % (DT_query_mapping[source], ioc)
+
+    print(query)
     return True
 
 
@@ -21,7 +30,7 @@ def main():
 
     log.info(ioc)
 
-    generate_DT_query(ioc, "IP")
+    generate_DT_query(ioc, "ip")
 
 if __name__ == "__main__":
     main()
