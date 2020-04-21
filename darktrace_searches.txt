@@ -1,0 +1,9 @@
+@fields.md5:0F841C6332C89EAA7CAC14C9D5B1D35B OR @fields.md5:21A563F958B73D453AD91E251B11855C OR @fields.md5:27C5ECBB94B84C315D56673A851B6CF9 OR @fields.md5:2FBD10975EE65845A18AF6B7488A5236 OR @fields.md5:87239CE48FC8196A5AB66D8562F48F26 OR @fields.md5:A0C5B4ADBCD9EB6DE9D32537B16C423B OR @fields.md5:F5ECDA7DD8BB1C514F93C09CEA8AE00D OR @field
+
+@fields.dest_ip:5.199.167.188 OR @fields.dest_ip:45.76.149.204 OR @fields.dest_ip:91.218.114.25 OR @fields.dest_ip:91.218.114.26 OR @fields.dest_ip:91.218.114.
+
+@fields.host:*introle.biz OR @fields.host:*plex.direct OR @fields.host:*agenziaentrateinformazioni.icu OR @fields.host:*agenziainformazioni.icu OR @fields.host:*bzst-info.icu OR @fields.host:*hilfe-center-1und1.icu OR @fields.host:*intralian.icu OR @fields.host:*
+
+@fields.query:*introle.biz OR @fields.query:*plex.direct OR @fields.query:*agenziaentrateinformazioni.icu OR @fields.query:*agenziainformazioni.icu OR @fields.query:*bzst-info.icu OR @fields.query:*hilfe-center-1und1.icu OR @fields.query:*intralian.icu
+
+@fields.sha256:153defee225de889d2ac66605f391f4aeaa8b867b4093c686941e64d0d245a57 OR @fields.sha256:195ef8cfabc2e877ebb1a60a19850c714fb0a477592b0a8d61d88f0f96be5de9 OR @fields.sha256:30b72e83d66cbe9e724c8e2b21179aecd4bcf68b2ec7895616807df380afab54 OR @fields.sha256:33afa2f1d53d5279b6fc87ce6834193fdd7e16e4b44e895aae4b9da00be0c502 OR @fields.sha256:4080402553e9a86e954c1d9b7d0bb059786f52aba4a179a5d00e219500c8f43d OR
