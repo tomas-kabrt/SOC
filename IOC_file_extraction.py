@@ -5,13 +5,7 @@ verbose = False
 
 def extractIOCfromFile():
     i = 0
-    ioc = {}
-    ioc['ip'] = []
-    ioc['domain'] = []
-    ioc['md5'] = []
-    ioc['sha1'] = []
-    ioc['sha256'] = []
-    ioc['unknown'] = []
+    ioc = {'ip': [], 'domain': [], 'md5': [], 'sha1': [], 'sha256': [], 'unknown': []}
 
     for line in open("ioc.txt", 'r'):
         i += 1
