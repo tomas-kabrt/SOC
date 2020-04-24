@@ -1,22 +1,34 @@
-import re
 import logging as log
 import IOC_file_extraction
+from colorama import Fore, Back, Style
 
-verbose = True
+verbose = False
+DT_Queries = True
+
+
+def fromat_text(title, item):
+    if item:
+        cr = '\r\n'
+        section_break = cr + "*" * 20 + cr
+        title = str(title)
+        item = str(item)
+        text = Style.BRIGHT + Fore.GREEN + title + Fore.RESET + section_break + item + section_break
+    else:
+        text = ''
+    return text
 
 
 def generate_DT_query(iocs, source):
     query = ''
 
-    DT_query_mapping = {'ip': 'dest_ip:', 'md5': 'md5:', 'sha256': 'sha256:', 'domain': 'host:'}
+    DT_query_mapping = {'ip': 'dest_ip:', 'md5': 'md5:', 'sha256': 'sha256:', 'domain': 'host:*'}
     for ioc in iocs[source]:
         if query == '':
             query = '@fields.%s%s' % (DT_query_mapping[source], ioc)
         else:
             query += ' OR @fields.%s%s' % (DT_query_mapping[source], ioc)
 
-    print(query)
-    return True
+    return query
 
 
 def main():
@@ -30,7 +42,11 @@ def main():
 
     log.info(ioc)
 
-    generate_DT_query(ioc, "ip")
+    if DT_Queries:
+        print(fromat_text("Extracted IP addresses in the DT query:", generate_DT_query(ioc, "ip")))
+        print(fromat_text("Extracted Domain in the DT query:", generate_DT_query(ioc, "domain")))
+        print(fromat_text("Extracted MD5 hashes in the DT query:", generate_DT_query(ioc, "md5")))
+        print(fromat_text("Extracted SHA256 hashes in the DT query:", generate_DT_query(ioc, "sha256")))
 
 if __name__ == "__main__":
     main()

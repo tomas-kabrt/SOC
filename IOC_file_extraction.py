@@ -15,11 +15,12 @@ def extractIOCfromFile():
 
     for line in open("ioc.txt", 'r'):
         i += 1
+        line = line.replace("[.]", ".")
         parsed_ioc = line.split()
         if parsed_ioc:
             var1 = parsed_ioc[0]
 
-            m = re.search(r'^(?:https?://)?(?:www\.)?([a-zA-Z0-9][a-zA-Z0-9-.]{1,61}[a-zA-Z0-9]\.[a-zA-Z]{2,}|(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])+)', var1)
+            m = re.search(r'^(?:h[tx]{2}ps?://)?(?:www\.)?([a-zA-Z0-9][a-zA-Z0-9-.]{1,61}[a-zA-Z0-9]\.[a-zA-Z]{2,}|(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])+)', var1)
             if m:
                 var1 = m.group(1)
                 if re.fullmatch(r'(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])', var1):
@@ -43,7 +44,7 @@ def extractIOCfromFile():
                 log.info("Line %d contains string %s was detected as a sha256 hash." % (i, var1))
                 ioc['sha256'].append(var1)
             else:
-                log.info("Line %d contains string %s was detected as a unknown." % (i, var1))
+                log.info("Line %d contains string %s was detected as an unknown." % (i, var1))
                 #ioc['unknown'].append(var1)
 
     return ioc
