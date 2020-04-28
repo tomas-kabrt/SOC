@@ -1,13 +1,20 @@
+import sys
 import re
 import logging as log
 
 verbose = False
 
-def extractIOCfromFile():
+def extractIOCfromFile(fname):
     i = 0
     ioc = {'ip': [], 'domain': [], 'md5': [], 'sha1': [], 'sha256': [], 'unknown': []}
 
-    for line in open("ioc.txt", 'r'):
+    try:
+        f = open(fname, 'r')
+    except OSError:
+        print("Could not open/read file:" + fname)
+        exit(1)
+
+    for line in f:
         i += 1
         line = line.replace("[.]", ".")
         parsed_ioc = line.split()
@@ -45,17 +52,23 @@ def extractIOCfromFile():
 
 
 
-def main():
+def main(argv):
+    if len(argv) != 2:
+        print('(+) usage: %s [ioc_file_name]' % argv[0])
+        print('(+) eg: %s "ioc.txt"' % argv[0])
+        sys.exit(-1)
+
+    fname = argv[1]
     if verbose:
         log.basicConfig(format="%(levelname)s: %(message)s", level=log.DEBUG)
         log.info("Verbose output.")
     else:
         log.basicConfig(format="%(levelname)s: %(message)s")
 
-    ioc = extractIOCfromFile()
+    ioc = extractIOCfromFile(fname)
 
     return ioc
 
 
 if __name__ == "__main__":
-    main()
+    main(sys.argv)

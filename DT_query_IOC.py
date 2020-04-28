@@ -4,7 +4,7 @@ from colorama import Fore, Back, Style
 
 verbose = False
 DT_Queries = True
-
+fname = "ioc.txt"
 
 def fromat_text(title, item):
     if item:
@@ -38,7 +38,7 @@ def main():
     else:
         log.basicConfig(format="%(levelname)s: %(message)s")
 
-    ioc = IOC_file_extraction.main()
+    ioc = IOC_file_extraction.main(["IOC_File_extraction", "%s" %fname])
 
     log.info(ioc)
 
