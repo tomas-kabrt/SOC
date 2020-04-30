@@ -6,7 +6,7 @@ verbose = False
 
 def extractIOCfromFile(fname):
     i = 0
-    ioc = {'ip': [], 'domain': [], 'md5': [], 'sha1': [], 'sha256': [], 'unknown': []}
+    ioc = {'ip': {}, 'domain': {}, 'md5': {}, 'sha1': {}, 'sha256': {}, 'unknown': {}}
 
     try:
         f = open(fname, 'r')
@@ -21,35 +21,37 @@ def extractIOCfromFile(fname):
         if parsed_ioc:
             var1 = parsed_ioc[0]
 
-            m = re.search(r'^(?:h[tx]{2}ps?://)?(?:www\.)?([a-zA-Z0-9][a-zA-Z0-9-.]{1,61}[a-zA-Z0-9]\.[a-zA-Z]{2,}|(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])+)', var1)
+            m = re.search(r'^(?:h[tx]{2}ps?:\/\/)?(?:www\.)?((?:[a-zA-Z0-9]+\.)+[a-zA-Z]{2,}|(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])+)', var1)
             if m:
                 var1 = m.group(1)
                 if re.fullmatch(r'(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])', var1):
                     log.info("Line %d contains string %s was detected as an IP." % (i, var1))
-                    ioc['ip'].append(var1)
+                    ioc['ip'][var1] = None
                 else:
                     log.info("Line %d contains string %s was detected as a domain." % (i, var1))
-                    ioc['domain'].append(var1)
+                    ioc['domain'][var1] = None
             elif re.fullmatch(
                     r'(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])',
                     var1):
                 log.info("Line %d contains string %s was detected as an IP." % (i, var1))
-                ioc['ip'].append(var1)
+                ioc['ip'][var1] = None
             elif re.fullmatch(r'[a-fA-F0-9]{32}', var1):
                 log.info("Line %d contains string %s was detected as a md5 hash." % (i, var1))
-                ioc['md5'].append(var1)
+                ioc['md5'][var1] = None
             elif re.fullmatch(r'[a-fA-F0-9]{40}', var1):
                 log.info("Line %d contains string %s was detected as a sha1 hash." % (i, var1))
-                ioc['sha1'].append(var1)
+                ioc['sha1'][var1] = None
             elif re.fullmatch(r'[a-fA-F0-9]{64}', var1):
                 log.info("Line %d contains string %s was detected as a sha256 hash." % (i, var1))
-                ioc['sha256'].append(var1)
+                ioc['sha256'][var1] = None
             else:
                 log.info("Line %d contains string %s was detected as an unknown." % (i, var1))
                 #ioc['unknown'].append(var1)
 
-    return ioc
-
+    ioc_list = {'ip': list(dict.fromkeys(ioc['ip'])), 'domain': list(dict.fromkeys(ioc['domain'])),
+                'md5': list(dict.fromkeys(ioc['md5'])), 'sha1': list(dict.fromkeys(ioc['sha1'])),
+                'sha256': list(dict.fromkeys(ioc['sha256'])), 'unknown': list(dict.fromkeys(ioc['unknown']))}
+    return ioc_list
 
 
 def main(argv):
