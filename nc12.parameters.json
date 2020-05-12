@@ -1,0 +1,92 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "location": {
+            "value": "eastus"
+        },
+        "networkInterfaceName": {
+            "value": "labuser933"
+        },
+        "networkSecurityGroupName": {
+            "value": "labuser-nsg"
+        },
+        "networkSecurityGroupRules": {
+            "value": [
+                {
+                    "name": "SSH",
+                    "properties": {
+                        "priority": 300,
+                        "protocol": "TCP",
+                        "access": "Allow",
+                        "direction": "Inbound",
+                        "sourceAddressPrefix": "*",
+                        "sourcePortRange": "*",
+                        "destinationAddressPrefix": "*",
+                        "destinationPortRange": "22"
+                    }
+                }
+            ]
+        },
+        "subnetName": {
+            "value": "default"
+        },
+        "virtualNetworkName": {
+            "value": "hash_east-vnet"
+        },
+        "addressPrefixes": {
+            "value": [
+                "10.1.1.0/24"
+            ]
+        },
+        "subnets": {
+            "value": [
+                {
+                    "name": "default",
+                    "properties": {
+                        "addressPrefix": "10.1.1.0/24"
+                    }
+                }
+            ]
+        },
+        "publicIpAddressName": {
+            "value": "labuser-ip"
+        },
+        "publicIpAddressType": {
+            "value": "Dynamic"
+        },
+        "publicIpAddressSku": {
+            "value": "Basic"
+        },
+        "virtualMachineName": {
+            "value": "labuser"
+        },
+        "virtualMachineRG": {
+            "value": "hash_east"
+        },
+        "osDiskType": {
+            "value": "StandardSSD_LRS"
+        },
+        "virtualMachineSize": {
+            "value": "Standard_NV12_Promo"
+        },
+        "adminUsername": {
+            "value": "labuser"
+        },
+        "adminPublicKey": {
+            "value": "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAgEAlbCKlNw2SFKfm0Cm1LPX4KY7MQZb2Z8livcy42A2TzF0pRUX0ZLH0VTOGzL8xjiBtaToeMs3Ft4mQ5t6CAoYGtolwgEF4fPMSDxvZzkJTzxDtq8UO71zt8KNq6c89wKpAL5XS9ifA9jDg+wDTzJHD0mUFJOGRH+pz/NdPv9I0HHEurwnVpfiIMuemnuhsAT6PTWBUq8eiLGxJReItrtlYKrnTQZEtc6R8OCetCO5lSUMTThHVggLTV11cKYXA3DkURS4HFNnzJxjk8P0KY2qCVaOP/BB9VcpJmp/LUG8FVzVS/pj9JYWOLQcnV+MJgvvYKbsuY9IEs9u6Y7O8A72/Z34dk8DBeeXYqd7Vd3Uv1APYDXwBhiRq1aDmLMuNgM3Vxg0omUUEFL0/BPa7UUbStco2gsrA+ETMuZQNPgY+ORsQ7nBkjEsL2Re9EZnm1NmdwV9R8ldBtmmdTiEJl4mK0sKLsFR2KHIkxafk34kN5peuCGF6Fj7xE2tOI+vQ+GWtKiegez8ryzWz5nZGjZVyG458SSR3JT+ouTtH/HePZWkYeGmXIfCof9Yj5nSrc89srViwJaTzVH5l4btWuj22gDGwPMu9jjixMpxOfFtvj16eQpWOWMo69o4lqMmsHN7K1qRfPYK/4uXQRkglhz/oB0OVjVGE0Xl+nWkRrobKHk="
+        },
+        "diagnosticsStorageAccountName": {
+            "value": "hasheastdiag"
+        },
+        "diagnosticsStorageAccountId": {
+            "value": "Microsoft.Storage/storageAccounts/hasheastdiag"
+        },
+        "diagnosticsStorageAccountType": {
+            "value": "Standard_LRS"
+        },
+        "diagnosticsStorageAccountKind": {
+            "value": "Storage"
+        }
+    }
+}
