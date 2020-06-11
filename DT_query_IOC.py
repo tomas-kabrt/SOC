@@ -2,6 +2,7 @@ import logging as log
 import IOC_file_extraction
 from colorama import Fore, Back, Style
 
+
 verbose = False
 DT_Queries = True
 fname = "ioc.txt"
