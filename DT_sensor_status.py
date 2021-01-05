@@ -20,7 +20,7 @@ def dump_to_json(event):
 def main():
     #logging.basicConfig(level=logging.INFO, format='%(levelname)s: %(asctime)s: %(message)s', datefmt='%a, %d %b %Y %H:%M:%S')
 
-    api = DtAPI(apitoken.authparams['server'], apitoken.authparams['public'], apitoken.authparams['private'])
+
     extract_keys_instance = ("id", "time", "type", "version", "label", "hostname", "type", "load", "cpu", "memoryUsed", "networkInterfacesState_eth0", "networkInterfacesState_eth1", "networkInterfacesState_eth2", "networkInterfacesReceived_eth0", "networkInterfacesReceived_eth1", "networkInterfacesReceived_eth2", "networkInterfacesTransmitted_eth0", "networkInterfacesTransmitted_eth1", "networkInterfacesTransmitted_eth2", "bandwidthCurrent", "bandwidthCurrentString", "processedBandwidthCurrent", "processedBandwidthCurrentString", "connectionsPerMinuteCurrent")
     extract_keys = ("id", "time", "type", "version", "label", "hostname", "diskUtilization", "load", "cpu", "memoryUsed", "networkInterfacesState_eth0", "networkInterfacesState_eth1", "networkInterfacesState_eth2", "networkInterfacesReceived_eth0", "networkInterfacesReceived_eth1", "networkInterfacesReceived_eth2", "networkInterfacesTransmitted_eth0", "networkInterfacesTransmitted_eth1", "networkInterfacesTransmitted_eth2", "bandwidthCurrent", "bandwidthCurrentString", "processedBandwidthCurrent", "processedBandwidthCurrentString", "connectionsPerMinuteCurrent")
 
